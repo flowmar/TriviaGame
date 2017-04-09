@@ -1,15 +1,37 @@
+html {
+  width: 100%;
+}
+
 body {
-  background-color: #000000;
+  background-image: url('../images/video_game_trivia.jpg');
+  -webkit-background-size: auto;
+       -o-background-size: auto;
+          background-size: auto;
+
+  margin-top: 5%;
+  width: 100%;
 }
 
 footer {
-  background-color: rgba(255, 133, 14, .75);
-  text-align: center;
-  width: 100;
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.footer {
+  background-color: rgba(255, 215, 0, .15);
+  padding: 3%;
+  width: 100%;
   }
 
 .welcome {
-  color: #38705c;
+  color: rgba(56, 112, 92, 1.0);
   font-family: 'Press Start 2P';
   font-weight: bold;
   text-align: center;
