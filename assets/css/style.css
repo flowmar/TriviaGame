@@ -1,3 +1,16 @@
-html {
-  background: #000;
+body {
+  background-color: #000000;
 }
+
+footer {
+  background-color: rgba(255, 133, 14, .75);
+  text-align: center;
+  width: 100;
+  }
+
+.welcome {
+  color: #38705c;
+  font-family: 'Press Start 2P';
+  font-weight: bold;
+  text-align: center;
+  }
