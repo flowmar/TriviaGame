@@ -18,7 +18,24 @@ header {
   width: 100%;
 }
 
+.main-content {
+  height: 100%;
+}
 
+.game {
+  margin: auto;
+  height: 100%;
+  padding: 10%;
+  width: 50%;
+}
+
+.square {
+    background-color: rgba(112, 128, 144, .8);
+  text-align: center;
+  height: 100%;
+  width: 100%;
+
+}
 
 .welcome {
   background-color: rgba(0, 0, 0, .65);
