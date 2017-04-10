@@ -74,3 +74,39 @@
 9. The main vilain's name was:
 10. Who were the Gorons?
 
+var trivia = [{
+  question: "In Donkey Kong Country, what was the name of the main villain?",
+  correct: "King K. Rool",
+  enabled: true,
+  incorrect1: "Banana Smasher",
+  incorrect2: "Kreepy Kong",
+  incorrect3: "Hyrule"
+},{
+  question: "What item made Mario grow into a giant?",
+  correct: "Mushrooms",
+  enabled: true,
+  incorrect1: "Stars",
+  incorrect2: "Diamonds",
+  incorrect3: "Apples,"
+},{
+  question: "In the Legend of Zelda series, what is the main playable character's name?",
+  correct: "Link",
+  enabled: true,
+  incorrect1: "Zelda",
+  incorrect2: "Gannondorf",
+  incorrect3: "Bowser",
+},{
+    question: "What is the princess' name in the Super Mario Brothers franchise?",
+    correct: "Princess Peach Toadstool",
+    enabled: true,
+    incorrect1: "Princess Gannondorf",
+    incorrect2: "Princess Daisy",
+    incorrect3: "Princess Zelda",
+  },{
+      question: "What was the name of the Rhino in the Donkey Kong series?",
+      correct: "Rambi the Rhino",
+      enabled: true,
+      incorrect1: "Peaches",
+      incorrect2: "Liu Kang",
+      incorrect3: "Carmello",
+    }]
