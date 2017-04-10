@@ -12,8 +12,7 @@ var choice4 = "";
 var seconds = 4;
 var round = 0;
 
-// randomNumber generator between 0 and 4
-var randomNumber = Math.floor(Math.random() * 4) 
+
 
 // enabledQuestions Object
 var enabledQuestions = [{
@@ -86,12 +85,13 @@ function timer() {
     seconds--;
     if (seconds < 0) {
       clearInterval(timer_30);
-      $('#timer').text("TIME UP! The correct answer is: " + d);
+      $('#timer').text("TIME UP! The correct answer is: " + currentQuestion[round]['correct']);
       unanswered++;
 
     }
   }, 1000);
 }
+
 // When start button is clicked, banner changes messages
     $('.start').on('click', 'button', function() {
       $('p.welcome').fadeOut(2000);
@@ -106,9 +106,48 @@ function timer() {
 // The #timer div is selected and the created timer is displayed
     $('#timer').fadeIn(2000);
 
-// Select and Display a question.
-currentQuestion[round] = enabledQuestions[randomNumber]['question'];
-// disabledquestions[round] = currentQuestion[round];
-$('.current-question').html("Current Question:<br> " + currentQuestion).fadeIn('slow');
+// randomNumber generator between 0 and 4
+var randomNumber = Math.floor(Math.random() * 4) 
+
+// Current Question of this round is a random pick from enabledQuestions
+currentQuestion[round] = enabledQuestions[randomNumber];
+
+// Find index of selected question within enabled questions
+var index = enabledQuestions.indexOf(currentQuestion[round]);
+
+// Remove question from enabledQuestions and place into disabledQuestions
+enabledQuestions.splice(index,1);
+disabledQuestions.push(currentQuestion[round]);
+
+// Select the correct div and Display a question.
+$('.current-question').html("Current Question:<br> " + disabledQuestions[round]['question']);
+
+// Create buttons for each choice 
+var choice1 = $('.mp3').html('<button>' + disabledQuestions[round]['incorrect1'] + '</button>' );
+var choice2 = $('.mp1').html('<button>' + disabledQuestions[round]['incorrect3'] + '</button>' );
+var choice3 = $('.mp2').html('<button>' + disabledQuestions[round]['correct'] + '</button>' );
+var choice4 = $('.mp4').html('<button>' + disabledQuestions[round]['incorrect2'] + '</button>' );
+
+// $('.mp3').on("click", 'button', function (){
+//   if (choice1.indexOf("correct") > -1) {
+//     correctAnswers++;
+//     console.log("TEST");
+//   }
+// $('.mp1').on("click", 'button', function (){
+//   if (choice2.indexOf("correct") > -1) {
+//     correctAnswers++;
+//     console.log("TEST");
+//   }
+// $('.mp2').on("click", 'button', function (){
+//   if (choice3.indexOf("correct") > -1) {
+//     correctAnswers++;
+//     console.log("TEST");
+//   }
+// $('.mp4').on("click", 'button', function (){
+//   if (choice4.indexOf("correct") > -1) {
+//     correctAnswers++;
+//     console.log("TEST");
+//   }
 })
-});
+})
+// });

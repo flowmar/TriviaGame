@@ -23,6 +23,8 @@ header {
 }
 
 .game {
+  font-family: 'Neucha';
+  font-size: 30px;
   margin: auto;
   height: 100%;
   padding: 10%;
