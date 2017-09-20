@@ -2,6 +2,7 @@ html {
   margin: 0;
   padding: 0;
 }
+
 body {
   background-image: url('../images/video_game_trivia2.jpg');
   background-size: cover;
@@ -32,11 +33,10 @@ header {
 }
 
 .square {
-    background-color: rgba(112, 128, 144, .9);
+  background-color: rgba(112, 128, 144, .9);
   height: 100%;
   text-align: center;
   width: 100%;
-
 }
 
 .message {
@@ -49,6 +49,7 @@ header {
   text-shadow: 5px 5px 8px #000000;
   width: 100%;
 }
+
 .welcome {
   background-color: rgba(0, 0, 0, .65);
   font-family: 'Press Start 2P';
@@ -58,11 +59,11 @@ header {
   text-align: center;
   text-shadow: 5px 5px 8px #000000;
   width: 100%;
-  }
+}
 
 footer {
   background-color: rgba(255, 215, 0, .4);
   padding: 3%;
   position: fixed;
   width: 100%;
-  }
+}
