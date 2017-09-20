@@ -11,29 +11,29 @@
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P|Neucha" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
       crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/css/mdb.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
 
   <body>
-    <div class="container-fluid">
-      <div class="row header">
-        <header>
-          <p class="lead welcome text-primary">
-            Welcome to Video Game Trivia!
-          </p>
-          <p class="lead message text-danger" style="display: none;">
-            Let's Play!!
-          </p>
-        </header>
-      </div>
-      <div class="row">
+    <div class="container-fluid">>
+      <header>
+        <p class="lead welcome text-primary">
+          Welcome to Video Game Trivia!
+        </p>
+        <p class="lead message text-danger">
+          Let's Play!!
+        </p>
+      </header>
+
+      <main class="row mb-4">
         <div class="col-2">
 
         </div>
         <div class="col-8 text-center">
           <div class="square game lead">
-            <div class="start"></div>
-            <div id="timer" style="display: none;">Time Remaining: </div>
+            <div id="start"></div>
+            <div id="timer" class="hoverable" style="display: none;">Time Remaining: </div>
             <br>
             <br>e
             <div class="current-question"> Think back to long ago...
@@ -49,14 +49,15 @@
         <div class="col-2">
 
         </div>
-      </div>
+      </main>
+
       <br>
       <br>
       <br>
 
       <!--Footer-->
-      <div class="row">
-        <footer class="text-center">
+      <div class="row mt-5">
+        <footer class="footer text-center">
           &copy;2017 Omar Imam
         </footer>
       </div>
@@ -68,7 +69,9 @@
         crossorigin="anonymous"></script>
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
         crossorigin="anonymous"></script>
-      <script src="assets/javascript/app.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
+
+      <!-- <script src="assets/javascript/app.js"></script> -->
     </div>
   </body>
 

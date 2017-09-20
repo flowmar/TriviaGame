@@ -12,8 +12,6 @@ var choice4 = "";
 var seconds = 4;
 var round = 0;
 
-
-
 // enabledQuestions Object
 var enabledQuestions = [{
   question: "In Donkey Kong Country, what was the name of the main villain?",
@@ -22,35 +20,35 @@ var enabledQuestions = [{
   incorrect1: "Banana Smasher",
   incorrect2: "Kreepy Kong",
   incorrect3: "Hyrule"
-},{
+}, {
   question: "What item made Mario grow into a giant?",
   correct: "Mushrooms",
   enabled: true,
   incorrect1: "Stars",
   incorrect2: "Diamonds",
   incorrect3: "Apples,"
-},{
+}, {
   question: "In the Legend of Zelda series, what is the main playable character's name?",
   correct: "Link",
   enabled: true,
   incorrect1: "Zelda",
   incorrect2: "Gannondorf",
   incorrect3: "Bowser",
-},{
-    question: "What is the princess' name in the Super Mario Brothers franchise?",
-    correct: "Princess Peach Toadstool",
-    enabled: true,
-    incorrect1: "Princess Gannondorf",
-    incorrect2: "Princess Daisy",
-    incorrect3: "Princess Zelda",
-  },{
-      question: "What was the name of the Rhino in the Donkey Kong series?",
-      correct: "Rambi the Rhino",
-      enabled: true,
-      incorrect1: "Peaches",
-      incorrect2: "Liu Kang",
-      incorrect3: "Carmello",
-    }];
+}, {
+  question: "What is the princess' name in the Super Mario Brothers franchise?",
+  correct: "Princess Peach Toadstool",
+  enabled: true,
+  incorrect1: "Princess Gannondorf",
+  incorrect2: "Princess Daisy",
+  incorrect3: "Princess Zelda",
+}, {
+  question: "What was the name of the Rhino in the Donkey Kong series?",
+  correct: "Rambi the Rhino",
+  enabled: true,
+  incorrect1: "Peaches",
+  incorrect2: "Liu Kang",
+  incorrect3: "Carmello",
+}];
 
 // Constructor for the enabled questions object
 function enabledConstructor(question, correct, enabled, incorrect1, incorrect2, incorrect3) {
@@ -62,92 +60,89 @@ function enabledConstructor(question, correct, enabled, incorrect1, incorrect2, 
   this.incorrect3 = incorrect3;
 }
 
-enabledQuestions = enabledQuestions.map(function(e) {
+enabledQuestions = enabledQuestions.map(function (e) {
   return new enabledConstructor(e.question, e.correct, e.enabled, e.incorrect1, e.incorrect2, e.incorrect3)
 });
 
-
-
-
 // Creates the Start button when the document is ready.
 $(document).ready(function initial() {
-  var startButton = $('.start').html("<button class='btn btn-default begin'>Start</buton>");
+  var startButton = $('#start').html("<button clss=a'btn btn-default begin'>Start</buton>");
 
-// Defines a function that creates a timer_30 object
-function timer() {
+  // Defines a function that creates a timer_30 object
+  function timer() {
 
-  // Creates a timer variable using setInterval method
-  var timer_30 = setInterval(function() {
+    // Creates a timer variable using setInterval method
+    var timer_30 = setInterval(function () {
 
-    // Displays the time remaining on the page
-    $('#timer').html("Time remaining: " + seconds);
-    console.log(seconds);
-    seconds--;
-    if (seconds < 0) {
-      clearInterval(timer_30);
-      $('#timer').text("TIME UP! The correct answer is: " + currentQuestion[round]['correct']);
-      unanswered++;
+      // Displays the time remaining on the page
+      $('#timer').html("Time remaining: " + seconds);
+      console.log(seconds);
+      seconds--;
+      if (seconds < 0) {
+        clearInterval(timer_30);
+        $('#timer').text("TIME UP! The correct answer is: " + currentQuestion[round]['correct']);
+        unanswered++;
 
-    }
-  }, 1000);
-}
+      }
+    }, 1000);
+  }
 
-// When start button is clicked, banner changes messages
-    $('.start').on('click', 'button', function() {
-      $('p.welcome').fadeOut(2000);
-      $('p.message').fadeIn(2800);
+  // When start button is clicked, banner changes messages
+  $('.start').on('click', 'button', function () {
+    $('p.welcome').fadeOut(2000);
+    $('p.message').fadeIn(2800);
 
-// The start button is removed.
-      $(this).remove().animate(1500);
+    // The start button is removed.
+    $(this).remove().animate(1500);
 
-// Creates a timer by calling the timer() function
-      timer();
+    // Creates a timer by calling the timer() function
+    timer();
 
-// The #timer div is selected and the created timer is displayed
+    // The #timer div is selected and the created timer is displayed
     $('#timer').fadeIn(2000);
 
-// randomNumber generator between 0 and 4
-var randomNumber = Math.floor(Math.random() * 4) 
+    // randomNumber generator between 0 and 4
+    var randomNumber = Math.floor(Math.random() * 4)
 
-// Current Question of this round is a random pick from enabledQuestions
-currentQuestion[round] = enabledQuestions[randomNumber];
+    // Current Question of this round is a random pick from enabledQuestions
+    currentQuestion[round] = enabledQuestions[randomNumber];
 
-// Find index of selected question within enabled questions
-var index = enabledQuestions.indexOf(currentQuestion[round]);
+    // Find index of selected question within enabled questions
+    var index = enabledQuestions.indexOf(currentQuestion[round]);
 
-// Remove question from enabledQuestions and place into disabledQuestions
-enabledQuestions.splice(index,1);
-disabledQuestions.push(currentQuestion[round]);
+    // Remove question from enabledQuestions and place into disabledQuestions
+    enabledQuestions.splice(index, 1);
+    disabledQuestions.push(currentQuestion[round]);
 
-// Select the correct div and Display a question.
-$('.current-question').html("Current Question:<br> " + disabledQuestions[round]['question']);
+    // Select the correct div and Display a question.
+    $('.current-question').html("Current Question:<br> " + disabledQuestions[round]['question']);
 
-// Create buttons for each choice 
-var choice1 = $('.mp3').html('<button>' + disabledQuestions[round]['incorrect1'] + '</button>' );
-var choice2 = $('.mp1').html('<button>' + disabledQuestions[round]['incorrect3'] + '</button>' );
-var choice3 = $('.mp2').html('<button>' + disabledQuestions[round]['correct'] + '</button>' );
-var choice4 = $('.mp4').html('<button>' + disabledQuestions[round]['incorrect2'] + '</button>' );
+    // Create buttons for each choice
+    var choice1 = $('.mp3').html('<button>' + disabledQuestions[round]['incorrect1'] + '</button>');
+    var choice2 = $('.mp1').html('<button>' + disabledQuestions[round]['incorrect3'] + '</button>');
+    var choice3 = $('.mp2').html('<button>' + disabledQuestions[round]['correct'] + '</button>');
+    var choice4 = $('.mp4').html('<button>' + disabledQuestions[round]['incorrect2'] + '</button>');
 
-// $('.mp3').on("click", 'button', function (){
-//   if (choice1.indexOf("correct") > -1) {
-//     correctAnswers++;
-//     console.log("TEST");
-//   }
-// $('.mp1').on("click", 'button', function (){
-//   if (choice2.indexOf("correct") > -1) {
-//     correctAnswers++;
-//     console.log("TEST");
-//   }
-// $('.mp2').on("click", 'button', function (){
-//   if (choice3.indexOf("correct") > -1) {
-//     correctAnswers++;
-//     console.log("TEST");
-//   }
-// $('.mp4').on("click", 'button', function (){
-//   if (choice4.indexOf("correct") > -1) {
-//     correctAnswers++;
-//     console.log("TEST");
-//   }
-})
+    // $('.mp3').on("click", 'button', function (){
+    //   if (choice1.indexOf("correct") > -1) {
+    //     correctAnswers++;
+    //     console.log("TEST");
+    //   }
+    // $('.mp1').on("click", 'button', function (){
+    //   if (choice2.indexOf("correct") > -1) {
+    //     correctAnswers++;
+    //     console.log("TEST");
+    //   }
+    // $('.mp2').on("click", 'button', function (){
+    //   if (choice3.indexOf("correct") > -1) {
+    //     correctAnswers++;
+    //     console.log("TEST");
+    //   }
+    // $('.mp4').on("click", 'button', function (){
+    //   if (choice4.indexOf("correct") > -1) {
+    //     correctAnswers++;
+    //     console.log("TEST");
+    //   }
+  })
 })
 // });
