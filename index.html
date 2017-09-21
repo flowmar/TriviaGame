@@ -36,14 +36,24 @@
 
         <!--Start-->
         <button id="start" class="btn btn-dark-green btn-block col-10 z-depth-2-half">Start</button>
+
+        <!--Quiz Theme-->
+        <div id="quiz-theme" class="text-center">
+          <ul>
+            <li class="btn btn-lg btn-yellow" value="dk" id="dk">Donkey Kong</li>
+            <li class="btn btn-lg btn-danger text-" value="mario" id="mario">Super Mario</li>
+          </ul>
+        </div>
         <div class="col"></div>
 
         <!--Game-->
-        <div class="col-11 text-center game">
+        <div class="col-12 text-center game">
           <div class="border border-light square game lead hoverable" id="game">
 
+
+
             <!--Timer-->
-            <div class="hoverable p-2" id="timer">
+            <div class="hoverable p-2 border border-light" id="timer">
               Time Remaining:
             </div>
             <br>
@@ -53,29 +63,18 @@
               Think back to long ago...
             </div> -->
 
-            <!--Quiz Theme-->
-            <div id="quiz-theme">
-              <ul>
-                <li class="btn btn-lg btn-yellow" value="dk" id="dk">Donkey Kong</li>
-                <li class="btn btn-lg btn-danger text-" value="mario" id="mario">Super Mario</li>
-              </ul>
-            </div>
+
             <br>
 
             <!--Current Question-->
-            <div id="current-question">
+            <div id="current-question" class="border border-light">
               (Current Question)
             </div>
             <br>
 
             <!--Choices-->
-            <ul class="list-unstyled" id="choices">
-
-              <li>{Choice 1}</li>
-              <li>{Choice 2}</li>
-              <li>{Choice 3}</li>
-              <li>{Choice 4}</li>
-            </ul>
+            <div class="list-unstyled border border-light" id="choices">
+            </div>
 
             <!-- <div class="mp1"></div> -->
             <!-- <div class="mp2"></div> -->
@@ -108,7 +107,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.3.0/js/mdb.min.js"></script>
 
     <!-- <script src="assets/javascript/app.js"></script> -->
-    <script src="assets/javascript/trivia.js"></script>
+    <script src="assets/javascript/2.js"></script>
 
   </body>
 

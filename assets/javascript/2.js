@@ -381,37 +381,41 @@ const timerDiv = $('#timer');
 const choicesDiv = $('#choices');
 const currentQuestionDiv = $('#current-question');
 var converted;
+var counter;
 var timer = {
-    time: 30,
+    time: 3,
     reset: function () {
         timer.time = 30;
     },
     start: function () {
-        counter = setInterval(timer.count(), 1000);
+        counter = setInterval(
+            timer.count, 1000);
     },
     stop: function () {
-        counter.clearInterval();
+        clearInterval(counter);
     },
     count: function () {
         timer.time--;
+        if (timer.time == 0) {
+            updateTimer();
+            timer.stop();
+            // alert("Time up!");
+        } else {
+            updateTimer();
+
+        };
     }
 }
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
-const constructed = [];
+const constructedQs = [];
+const constructedAs = [];
+let questionNumber = 1;
 
 // Functions
 
 startGame = () => {
-    // $(startButton).on('click', function () {
-    //     startButton.hide(1500);
-    //     window.setTimeout(function () {
-    //         gameDiv.slideDown(2500);
-    //     }, 2000);
-    //     window.setTimeout(function () {
-    //         quizThemeDiv.slideDown(2500);
-    //     }, 4000)
     $(startButton).on('click', function () {
         startButton.hide(500);
         window.setTimeout(function () {
@@ -419,26 +423,28 @@ startGame = () => {
         }, 500);
         window.setTimeout(function () {
             quizThemeDiv.slideDown(1500);
-        }, 2000)
+        }, 500)
     });
     $('#dk').on('click', function () {
         build("dk");
-        quizThemeDiv.slideUp(2000);
+        quizThemeDiv.slideUp(1000);
         window.setTimeout(function () {
-            currentQuestionDiv.show(3000);
-            choicesDiv.show(3000);
-            timerDiv.show(3000);
-        }, 2500);
+            currentQuestionDiv.show(1500);
+            choicesDiv.show(1500);
+            timerDiv.show(1500);
+        }, 1000);
+        playGame();
     });
 
     $('#mario').on('click', function () {
         build("mario");
-        quizThemeDiv.slideUp(3000);
+        quizThemeDiv.slideUp(1000);
         window.setTimeout(function () {
-            currentQuestionDiv.show(4000);
-            choicesDiv.show(4000);
-            timerDiv.show(4000);
-        }, 3000);
+            currentQuestionDiv.show(1500);
+            choicesDiv.show(1500);
+            timerDiv.show(1500);
+        }, 1000);
+        playGame();
     });
 }
 
@@ -462,9 +468,15 @@ build = (theme) => {
         question9 = questions.donkeyKong[8].question;
         question10 = questions.donkeyKong[9].question;
 
-        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+        constructedQs.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 
-        console.log(constructed);
+        console.log(constructedQs);
+
+        answers1 = questions.donkeyKong[0].answers;
+
+        constructedAs.push(answers1);
+
+        console.log(constructedAs);
 
         cycleQuestions();
 
@@ -481,18 +493,57 @@ build = (theme) => {
         question9 = questions.mario[8].question;
         question10 = questions.mario[9].question;
 
-        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10)
+        constructedQs.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 
-            .done(cycleQuestions());
+        cycleQuestions();
     }
 
 }
 
+updateTimer = () => {
+    console.log("update timer");
+    timerDiv.empty().html("Time remaining:<br>" + timer.time);
+}
+
 cycleQuestions = () => {
-    window.setInterval(function () {
-        timer.start();
-        timerDiv.empty().html("Time remaining:<br>" + timer.time);
-    });
+    timer.start();
+
+}
+
+playGame = () => {
+    switch (questionNumber) {
+        case 1:
+            currentQuestionDiv.empty().html(question1);
+            // choicesDiv.html(
+            //     'A: ' + questions[0].answers[0] + '<br> B:' + questions[0].answers[1] + '<br> C:' + questions[0].answers[2] + '<br> D:' + questions[0].answers[3]);
+            choicesDiv.empty().html('<ul>' + '<li>' + constructedAs[0].a + '</li>' + '<li>' + constructedAs[0].b + '</li>' + '<li>' + constructedAs[0].c + '</li>' + '<li>' + constructedAs[0]._.debounce(func, wait, options, $ {
+                options.leading
+            }, $ {
+                options.maxWait
+            }, $ {
+                options.trailing
+            }) + '</li>' + '</ul>');
+            break;
+        case 2:
+            break;
+        case 3:
+            break;
+        case 4:
+            break;
+        case 5:
+            break;
+        case 6:
+            break;
+        case 7:
+            break;
+        case 8:
+            break;
+        case 9:
+            break;
+        case 10:
+            break;
+    }
+
 }
 
 $(document).ready(function () {
