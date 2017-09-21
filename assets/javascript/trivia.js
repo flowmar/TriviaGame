@@ -373,30 +373,64 @@ const questions = {
 
 // Initialize variables
 var welcome = $('#welcome');
-
 var game = $('#game');
-
 var quizTheme = $('#quiz-theme');
-
 var startButton = $('#start');
-
 var theme;
+var timerDiv = $('#timer');
+var choices = $('#choices');
+var currentQuestion = $('#current-question');
+var converted;
+var timer = {
+    time: 30,
+    reset: function () {
+        timer.time = 30;
+    },
+    start: function () {
+        counter = setInterval(timer.count(), 1000);
+    },
+    stop: function () {
+        counter.clearInterval();
+    },
+    count: function () {
+        timer.time--;
+    }
+}
+var correct = 0;
+var incorrect = 0;
+var unanswered = 0;
+const constructed = [];
 
 // Functions
 
 startGame = () => {
     $(startButton).on('click', function () {
-        startButton.hide(2000);
-        game.slideDown(4000);
-        quizTheme.slideDown(6000);
+        startButton.hide(1500);
+        window.setTimeout(function () {
+            game.slideDown(2500);
+        }, 2000);
+        window.setTimeout(function () {
+            quizTheme.slideDown(2500);
+        }, 4000)
     });
-
     $('#dk').on('click', function () {
         build("dk");
+        quizTheme.slideUp(2000);
+        window.setTimeout(function () {
+            currentQuestion.show(3000);
+            choices.show(3000);
+            timerDiv.show(3000);
+        }, 2500);
     });
 
     $('#mario').on('click', function () {
         build("mario");
+        quizTheme.slideUp(3000);
+        window.setTimeout(function () {
+            currentQuestion.show(4000);
+            choices.show(4000);
+            timerDiv.show(4000);
+        }, 3000);
     });
 }
 
@@ -407,7 +441,6 @@ resetGame = () => {
 }
 
 build = (theme) => {
-    const constructed = [];
 
     if (theme === "dk") {
         question1 = questions.donkeyKong[0].question;
@@ -422,8 +455,13 @@ build = (theme) => {
         question10 = questions.donkeyKong[9].question;
 
         constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+
         console.log(constructed);
+
+        cycleQuestions();
+
     } else if (theme === "mario") {
+
         question1 = questions.mario[0].question;
         question2 = questions.mario[1].question;
         question3 = questions.mario[2].question;
@@ -434,10 +472,19 @@ build = (theme) => {
         question8 = questions.mario[7].question;
         question9 = questions.mario[8].question;
         question10 = questions.mario[9].question;
-        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
-        console.log(constructed);
+
+        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10)
+
+            .done(cycleQuestions());
     }
 
+}
+
+cycleQuestions = () => {
+    // window.setInterval(function () {
+    timer.start();
+    timerDiv.empty().html(timer.time);
+    // }, 1000);
 }
 
 $(document).ready(function () {
