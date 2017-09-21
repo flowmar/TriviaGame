@@ -1,4 +1,4 @@
-const questions = [{
+const questions = {
     donkeyKong: [{
             question: "What was the name of the final boss in Donkey Kong Country?",
             answers: {
@@ -369,19 +369,77 @@ const questions = [{
         },
         correctAnswer: ""
     }],
-}]
+}
 
 // Initialize variables
 var welcome = $('#welcome');
 
-var message = $('#message');
-
 var game = $('#game');
+
+var quizTheme = $('#quiz-theme');
 
 var startButton = $('#start');
 
-$(document).ready(function () {
+var theme;
+
+// Functions
+
+startGame = () => {
     $(startButton).on('click', function () {
-        startButton.hide(1000).delay(2000).done(game.show(2000));
+        startButton.hide(2000);
+        game.slideDown(4000);
+        quizTheme.slideDown(6000);
     });
-})
+
+    $('#dk').on('click', function () {
+        build("dk");
+    });
+
+    $('#mario').on('click', function () {
+        build("mario");
+    });
+}
+
+resetGame = () => {
+    correct = 0;
+    incorrect = 0;
+    unanswered = 0;
+}
+
+build = (theme) => {
+    const constructed = [];
+
+    if (theme === "dk") {
+        question1 = questions.donkeyKong[0].question;
+        question2 = questions.donkeyKong[1].question;
+        question3 = questions.donkeyKong[2].question;
+        question4 = questions.donkeyKong[3].question;
+        question5 = questions.donkeyKong[4].question;
+        question6 = questions.donkeyKong[5].question;
+        question7 = questions.donkeyKong[6].question;
+        question8 = questions.donkeyKong[7].question;
+        question9 = questions.donkeyKong[8].question;
+        question10 = questions.donkeyKong[9].question;
+
+        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+        console.log(constructed);
+    } else if (theme === "mario") {
+        question1 = questions.mario[0].question;
+        question2 = questions.mario[1].question;
+        question3 = questions.mario[2].question;
+        question4 = questions.mario[3].question;
+        question5 = questions.mario[4].question;
+        question6 = questions.mario[5].question;
+        question7 = questions.mario[6].question;
+        question8 = questions.mario[7].question;
+        question9 = questions.mario[8].question;
+        question10 = questions.mario[9].question;
+        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+        console.log(constructed);
+    }
+
+}
+
+$(document).ready(function () {
+    startGame();
+});

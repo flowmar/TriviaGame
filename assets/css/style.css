@@ -42,6 +42,7 @@ header {
 
 .btn {
   cursor: pointer;
+  text-shadow: .02rem .02rem .2rem black;
 }
 
 #message {
@@ -89,6 +90,7 @@ footer {
   font-weight: bolder;
   -webkit-text-stroke: .008rem ghostwhite;
   text-shadow: .02rem .02rem .3rem black, .01rem .01rem .1rem whitesmoke;
+  display: none;
 }
 
 #timer {
@@ -97,6 +99,15 @@ footer {
   border: .1rem groove black;
   border-radius: 1rem;
   font-weight: bold;
+  display: none;
+}
+
+#quiz-theme {
+  display: none;
+}
+
+#choices {
+  display: none;
 }
 
 #game {
@@ -106,4 +117,16 @@ footer {
 #start {
   -webkit-box-shadow: .02rem .02rem .2rem green;
   box-shadow: .02rem .02rem .2rem green, .04rem .04rem .7rem black;
+}
+
+#dk {
+  text-shadow: .02rem .02rem .2rem black;
+  font-size: 2rem;
+  -webkit-text-stroke: .02rem black;
+}
+
+#mario {
+  text-shadow: .02rem .02rem .2rem black;
+  font-size: 2rem;
+  -webkit-text-stroke: .02rem black;
 }
