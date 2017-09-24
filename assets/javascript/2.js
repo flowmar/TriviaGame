@@ -395,6 +395,8 @@ const constructedAs = [];
 const correctArray = [];
 var currentQuestion;
 var currentQuestionNumber = 1;
+var playerchoice = '';
+var currentCorrectAnswer = '';
 
 // Functions
 
@@ -402,12 +404,12 @@ resetTimer = () => {
     time = 30;
 }
 startTimer = () => {
-    console.log("start timer");
     updater = setInterval(updateTimer, 1000);
     counter = setInterval(count, 1000);
 }
 stopTimer = () => {
     clearInterval(counter);
+    clearInterval(updateTimer);
 }
 count = () => {
     time--;
@@ -420,11 +422,7 @@ count = () => {
 }
 updateTimer = () => {
     console.log(time);
-    // if (timer.time < 0) {
-    //     clearInterval(counter);
-    // } else {
     timerDiv.empty().html("Time remaining:<br>" + time);
-    // }
 }
 
 startGame = () => {
@@ -529,6 +527,7 @@ build = (theme) => {
 
     } else if (theme === "mario") {
 
+        // Build Mario theme questions and answers arrays
         question1 = questions.mario[0].question;
         question2 = questions.mario[1].question;
         question3 = questions.mario[2].question;
@@ -575,66 +574,75 @@ build = (theme) => {
 
 }
 
-showQuestion = (currentQuestionNumber) => {
+// Based on the currentQuestionNumber, display the corresponding question and answer choices from their respective arrays
+showQuestion = () => {
     switch (currentQuestionNumber) {
         case 1:
-            $('#current-question').html(question1);
+            $('#current-question').empty().html(question1);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[0].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[0].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[0].c + '</li><li class="btn btn-yellow" id="c">' + constructedAs[0].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[0];
             currentQuestionNumber++;
+            console.log(currentQuestionNumber);
             break;
         case 2:
-            $('#current-question').html(question2);
+            $('#current-question').empty().html(question2);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[1].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[1].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[1].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[1].d +
                 '</ul>'
             )
+            currentCorrectAnswer = correctArray[1];
             currentQuestionNumber++;
             break;
         case 3:
-            $('#current-question').html(question3);
+            $('#current-question').empty().html(question3);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[2].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[2].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[2].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[2].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[2];
             currentQuestionNumber++;
             break;
         case 4:
-            $('#current-question').html(question4);
+            $('#current-question').empty().html(question4);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[3].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[3].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[3].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[3].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[3];
             currentQuestionNumber++;
             break;
         case 5:
-            $('#current-question').html(question5);
+            $('#current-question').empty().html(question5);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[4].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[4].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[4].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[4].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[4];
             currentQuestionNumber++;
             break;
         case 6:
-            $('#current-question').html(question6);
+            $('#current-question').empty().html(question6);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[5].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[5].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[5].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[5].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[5];
             currentQuestionNumber++;
             break;
         case 7:
-            $('#current-question').html(question7);
+            $('#current-question').empty().html(question7);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[6].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[6].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[6].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[6].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[6];
             currentQuestionNumber++;
             break;
         case 8:
-            $('#current-question').html(question8);
+            $('#current-question').empty().html(question8);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[7].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[7].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[7].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[7].d +
                 '</ul>'
@@ -642,39 +650,96 @@ showQuestion = (currentQuestionNumber) => {
             currentQuestionNumber++;
             break;
         case 9:
-            $('#current-question').html(question9);
+            $('#current-question').empty().html(question9);
             $('#choices').html(
                 '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[8].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[8].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[8].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[8].d +
                 '</ul>'
             );
+            currentCorrectAnswer = correctArray[8];
             currentQuestionNumber++;
             break;
         case 10:
-            $('#current-question').html(question10);
+            $('#current-question').empty().html(question10);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[9].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[9].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[9].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[9].d +
-                '</ul>'
+                '<ul><li><button type="button" class="btn btn-dark-green" id="a">' + constructedAs[9].a + '</button></li><li><button class="btn btn-brown" id="b">' + constructedAs[9].b + '</button></li><li><button class="btn btn-cyan" id="c">' + constructedAs[9].c + '</button></li><li> <button class="btn btn-yellow" id="d">' + constructedAs[9].d +
+                '</button></li></ul>'
             );
+            currentCorrectAnswer = correctArray[9];
             currentQuestionNumber++;
             break;
     }
-}
 
-showChoices = (currentQuestionNumber) => {
-    switch (currentQuestionNumber) {
-        case 1:
+    // When an answer is clicked, disable the other buttons and run compareAnswers()
+    $('#a, #b, #c, #d').click(function () {
+        if (this.id == 'a') {
+            stopTimer();
+            $('#b', '#c', '#d').addClass('disabled');
+            playerChoice = 'a';
+            compareAnswers(playerChoice);
+        } else if (this.id == 'b') {
+            stopTimer();
+            $('#a', '#c', '#d').addClass('disabled');
+            playerChoice = 'b';
+            console.log(playerChoice);
+            compareAnswers(playerChoice);
+        } else if (this.id == 'c') {
+            stopTimer();
+            $('#a', '#b', '#d').addClass('disabled');
+            playerChoice = 'c';
+            console.log(playerChoice);
+            compareAnswers(playerChoice);
+        } else if (this.id == 'd') {
+            stopTimer();
+            $('#a', '#b', '#c').addClass('disabled');
+            playerChoice = 'd';
+            console.log(playerChoice);
+            compareAnswers(playerChoice);
+
+        }
+    });
+};
+
+// Check if the playerChoice was correct
+compareAnswers = (playerChoice) => {
+
+    console.log("Comparing player choice");
+    // If correct, add a point to 'correct' and alert
+    if (playerChoice == currentCorrectAnswer) {
+        correct++;
+        alert("YAHOOO!!");
     }
+    // Otherwise add a point to 'incorrect' and alert
+    else {
+        incorrect++;
+        alert("NOOPE!");
+    }
+
+    // Clear out divs to make room for the next question
+    clearDivs();
 }
 
+// Clears out all divs and starts the next question
+clearDivs = () => {
+    timerDiv.empty();
+    currentQuestionDiv.empty();
+    choicesDiv.html('<ul></ul>');
+    playGame();
+
+}
+
+// Check the currentQuestionNumber and run showQuestion; reset the timer
 playGame = () => {
     if (currentQuestionNumber < 10) {
         showQuestion(currentQuestionNumber);
-        showChoices(currentQuestionNumber);
+        resetTimer();
         startTimer();
+    } else {
+        TODO: "End of game, show stats"
+        alert("TIME UP!");
     }
+};
 
-}
-
+// When the document is ready, populate the start button
 $(document).ready(function () {
     startGame();
 });
