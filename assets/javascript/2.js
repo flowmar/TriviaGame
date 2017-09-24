@@ -1,4 +1,7 @@
 // Initialize variables
+
+/*Trivia Bank */
+
 const questions = {
     donkeyKong: [{
             question: "What was the name of the final boss in Donkey Kong Country?",
@@ -372,50 +375,60 @@ const questions = {
     }],
 }
 
+// Variables
 const welcomeDiv = $('#welcome');
 const gameDiv = $('#game');
 const quizThemeDiv = $('#quiz-theme');
 const startButton = $('#start');
-let theme;
 const timerDiv = $('#timer');
 const choicesDiv = $('#choices');
 const currentQuestionDiv = $('#current-question');
-var converted;
+var theme;
 var counter;
-var timer = {
-    time: 3,
-    reset: function () {
-        timer.time = 30;
-    },
-    start: function () {
-        counter = setInterval(
-            timer.count, 1000);
-    },
-    stop: function () {
-        clearInterval(counter);
-    },
-    count: function () {
-        timer.time--;
-        if (timer.time == 0) {
-            updateTimer();
-            timer.stop();
-            // alert("Time up!");
-        } else {
-            updateTimer();
-
-        };
-    }
-}
+var updater;
+var time = 10;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
 const constructedQs = [];
 const constructedAs = [];
-let questionNumber = 1;
+const correctArray = [];
+var currentQuestion;
+var currentQuestionNumber = 1;
 
 // Functions
 
+resetTimer = () => {
+    time = 30;
+}
+startTimer = () => {
+    console.log("start timer");
+    updater = setInterval(updateTimer, 1000);
+    counter = setInterval(count, 1000);
+}
+stopTimer = () => {
+    clearInterval(counter);
+}
+count = () => {
+    time--;
+    if (time > 0) {
+        updateTimer();
+    } else {
+        stopTimer();
+        updateTimer();
+    }
+}
+updateTimer = () => {
+    console.log(time);
+    // if (timer.time < 0) {
+    //     clearInterval(counter);
+    // } else {
+    timerDiv.empty().html("Time remaining:<br>" + time);
+    // }
+}
+
 startGame = () => {
+    // Click the start button to begin game
     $(startButton).on('click', function () {
         startButton.hide(500);
         window.setTimeout(function () {
@@ -425,6 +438,9 @@ startGame = () => {
             quizThemeDiv.slideDown(1500);
         }, 500)
     });
+
+    // Choose a video game for the questions
+    /*Donkey Kong*/
     $('#dk').on('click', function () {
         build("dk");
         quizThemeDiv.slideUp(1000);
@@ -433,9 +449,13 @@ startGame = () => {
             choicesDiv.show(1500);
             timerDiv.show(1500);
         }, 1000);
+        gameDiv.css({
+            backgroundColor: "goldenrod"
+        });
         playGame();
     });
 
+    /* Super Mario */
     $('#mario').on('click', function () {
         build("mario");
         quizThemeDiv.slideUp(1000);
@@ -448,15 +468,20 @@ startGame = () => {
     });
 }
 
+// Reset game scores
 resetGame = () => {
     correct = 0;
     incorrect = 0;
     unanswered = 0;
 }
 
+// Build an array with the chosen question theme
 build = (theme) => {
 
     if (theme === "dk") {
+
+        // Build questions array
+
         question1 = questions.donkeyKong[0].question;
         question2 = questions.donkeyKong[1].question;
         question3 = questions.donkeyKong[2].question;
@@ -472,13 +497,35 @@ build = (theme) => {
 
         console.log(constructedQs);
 
+        // Build answer choices array
         answers1 = questions.donkeyKong[0].answers;
+        answers2 = questions.donkeyKong[1].answers;
+        answers3 = questions.donkeyKong[2].answers;
+        answers4 = questions.donkeyKong[3].answers;
+        answers5 = questions.donkeyKong[4].answers;
+        answers6 = questions.donkeyKong[5].answers;
+        answers7 = questions.donkeyKong[6].answers;
+        answers8 = questions.donkeyKong[7].answers;
+        answers9 = questions.donkeyKong[8].answers;
+        answers10 = questions.donkeyKong[9].answers;
 
-        constructedAs.push(answers1);
-
+        constructedAs.push(answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10);
         console.log(constructedAs);
 
-        cycleQuestions();
+        // Build correct answer array
+        correctAnswer1 = questions.donkeyKong[0].correctAnswer;
+        correctAnswer2 = questions.donkeyKong[1].correctAnswer;
+        correctAnswer3 = questions.donkeyKong[2].correctAnswer;
+        correctAnswer4 = questions.donkeyKong[3].correctAnswer;
+        correctAnswer5 = questions.donkeyKong[4].correctAnswer;
+        correctAnswer6 = questions.donkeyKong[5].correctAnswer;
+        correctAnswer7 = questions.donkeyKong[6].correctAnswer;
+        correctAnswer8 = questions.donkeyKong[7].correctAnswer;
+        correctAnswer9 = questions.donkeyKong[8].correctAnswer;
+        correctAnswer10 = questions.donkeyKong[9].correctAnswer;
+
+        correctArray.push(correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5, correctAnswer6, correctAnswer7, correctAnswer8, correctAnswer9, correctAnswer10);
+        console.log(correctArray);
 
     } else if (theme === "mario") {
 
@@ -495,53 +542,62 @@ build = (theme) => {
 
         constructedQs.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 
-        cycleQuestions();
+        answers1 = questions.mario[0].answers;
+        answers2 = questions.mario[1].answers;
+        answers3 = questions.mario[2].answers;
+        answers4 = questions.mario[3].answers;
+        answers5 = questions.mario[4].answers;
+        answers6 = questions.mario[5].answers;
+        answers7 = questions.mario[6].answers;
+        answers8 = questions.mario[7].answers;
+        answers9 = questions.mario[8].answers;
+        answers10 = questions.mario[9].answers;
+
+        constructedAs.push(answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10);
+        console.log(constructedAs);
+
+        correctAnswer1 = questions.mario[0].correctAnswer;
+        correctAnswer2 = questions.mario[1].correctAnswer;
+        correctAnswer3 = questions.mario[2].correctAnswer;
+        correctAnswer4 = questions.mario[3].correctAnswer;
+        correctAnswer5 = questions.mario[4].correctAnswer;
+        correctAnswer6 = questions.mario[5].correctAnswer;
+        correctAnswer7 = questions.mario[6].correctAnswer;
+        correctAnswer8 = questions.mario[7].correctAnswer;
+        correctAnswer9 = questions.mario[8].correctAnswer;
+        correctAnswer10 = questions.mario[9].correctAnswer;
+
+        console.log(correctAnswer1);
+
+        correctArray.push(correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5, correctAnswer6, correctAnswer7, correctAnswer8, correctAnswer9, correctAnswer10);
+        console.log(correctArray);
     }
 
 }
 
-updateTimer = () => {
-    console.log("update timer");
-    timerDiv.empty().html("Time remaining:<br>" + timer.time);
+showQuestion = (currentQuestionNumber) => {
+    switch (currentQuestionNumber) {
+        case 1:
+            $('#current-question').html(question1);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green">' + constructedAs[0].a + '</li><li class="btn btn-brown">' + constructedAs[0].b + '</li><li class="btn btn-cyan">' + constructedAs[0].c + '</li><li class="btn btn-yellow">' + constructedAs[0].d +
+                '</ul>'
+            )
+            break;
+    }
 }
 
-cycleQuestions = () => {
-    timer.start();
-
+showChoices = (currentQuestionNumber) => {
+    switch (currentQuestionNumber) {
+        case 1:
+    }
 }
 
 playGame = () => {
-    switch (questionNumber) {
-        case 1:
-            currentQuestionDiv.empty().html(question1);
-            // choicesDiv.html(
-            //     'A: ' + questions[0].answers[0] + '<br> B:' + questions[0].answers[1] + '<br> C:' + questions[0].answers[2] + '<br> D:' + questions[0].answers[3]);
-            choicesDiv.empty().html('<ul>' + '<li>' + constructedAs[0].a + '</li>' + '<li>' + constructedAs[0].b + '</li>' + '<li>' + constructedAs[0].c + '</li>' + '<li>' + constructedAs[0]._.debounce(func, wait, options, $ {
-                options.leading
-            }, $ {
-                options.maxWait
-            }, $ {
-                options.trailing
-            }) + '</li>' + '</ul>');
-            break;
-        case 2:
-            break;
-        case 3:
-            break;
-        case 4:
-            break;
-        case 5:
-            break;
-        case 6:
-            break;
-        case 7:
-            break;
-        case 8:
-            break;
-        case 9:
-            break;
-        case 10:
-            break;
+    if (currentQuestionNumber < 10) {
+        showQuestion(currentQuestionNumber);
+        showChoices(currentQuestionNumber);
+        startTimer();
     }
 
 }
