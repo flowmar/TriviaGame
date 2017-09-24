@@ -580,9 +580,82 @@ showQuestion = (currentQuestionNumber) => {
         case 1:
             $('#current-question').html(question1);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green">' + constructedAs[0].a + '</li><li class="btn btn-brown">' + constructedAs[0].b + '</li><li class="btn btn-cyan">' + constructedAs[0].c + '</li><li class="btn btn-yellow">' + constructedAs[0].d +
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[0].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[0].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[0].c + '</li><li class="btn btn-yellow" id="c">' + constructedAs[0].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 2:
+            $('#current-question').html(question2);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[1].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[1].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[1].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[1].d +
                 '</ul>'
             )
+            currentQuestionNumber++;
+            break;
+        case 3:
+            $('#current-question').html(question3);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[2].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[2].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[2].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[2].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 4:
+            $('#current-question').html(question4);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[3].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[3].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[3].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[3].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 5:
+            $('#current-question').html(question5);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[4].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[4].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[4].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[4].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 6:
+            $('#current-question').html(question6);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[5].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[5].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[5].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[5].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 7:
+            $('#current-question').html(question7);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[6].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[6].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[6].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[6].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 8:
+            $('#current-question').html(question8);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[7].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[7].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[7].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[7].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 9:
+            $('#current-question').html(question9);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[8].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[8].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[8].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[8].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 10:
+            $('#current-question').html(question10);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[9].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[9].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[9].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[9].d +
+                '</ul>'
+            );
+            currentQuestionNumber++;
             break;
     }
 }
