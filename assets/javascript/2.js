@@ -114,7 +114,7 @@ const questions = {
                 a: "Stars",
                 b: "Feathers",
                 c: "Mushrooms",
-                e: "Apples"
+                d: "Apples"
             },
             correctAnswer: "b"
         }, {
@@ -123,7 +123,7 @@ const questions = {
                 a: "Gruntilda, an angry witch",
                 b: "King K. Rool, the king of the lizards",
                 c: "Bowser, a turtle",
-                e: "Ash Ketchum, a terrifying ghost"
+                d: "Ash Ketchum, a terrifying ghost"
             },
             correctAnswer: "c"
         }, {
@@ -132,7 +132,7 @@ const questions = {
                 a: "Princess Zelda",
                 b: "Princess Daisy",
                 c: "Princess Peach",
-                e: "Princess Gannondorf"
+                d: "Princess Gannondorf"
             },
             correctAnswer: "c"
         }, {
@@ -141,7 +141,7 @@ const questions = {
                 a: "Maria",
                 b: "Gannondorf",
                 c: "Toad",
-                e: "Luigi"
+                d: "Luigi"
             },
             correctAnswer: "d"
         }, {
@@ -150,7 +150,7 @@ const questions = {
                 a: "Boo, only attacked you when you were facing away",
                 b: "Yelp, threw fireballs at you",
                 c: "Scream, spit icicles at you",
-                e: "Biggie, tried to eat you"
+                d: "Biggie, tried to eat you"
             },
             correctAnswer: "a"
         }, {
@@ -159,7 +159,7 @@ const questions = {
                 a: "The Sunshine Kingdom",
                 b: "Earth",
                 c: "The Mushroom Kingdom",
-                e: "The Star Kingdom"
+                d: "The Star Kingdom"
             },
             correctAnswer: "c"
         }, {
@@ -168,7 +168,7 @@ const questions = {
                 a: "Banjo the Bear",
                 b: "Yoshi the Dinosaur",
                 c: "Bowser the Turtle",
-                e: "Rambi the Rhino"
+                d: "Rambi the Rhino"
             },
             correctAnswer: "b"
         }, {
@@ -177,7 +177,7 @@ const questions = {
                 a: "A water-spraying backpack",
                 b: "A sword",
                 c: "Fireballs",
-                e: "Turtle Shells"
+                d: "Turtle Shells"
             },
             correctAnswer: "a"
         }, {
@@ -186,7 +186,7 @@ const questions = {
                 a: "Red Egg",
                 b: "Red Mushroom",
                 c: "Fire Flower",
-                e: "Hammer"
+                d: "Hammer"
             },
             correctAnswer: "c"
         }
@@ -372,7 +372,7 @@ const questions = {
             e: ""
         },
         correctAnswer: ""
-    }],
+    }]
 }
 
 // Variables
@@ -462,6 +462,9 @@ startGame = () => {
             choicesDiv.show(1500);
             timerDiv.show(1500);
         }, 1000);
+        gameDiv.css({
+            backgroundColor: "red"
+        });
         playGame();
     });
 }
@@ -580,7 +583,7 @@ showQuestion = () => {
         case 1:
             $('#current-question').empty().html(question1);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[0].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[0].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[0].c + '</li><li class="btn btn-yellow" id="c">' + constructedAs[0].d +
+                '<ul><li class="btn btn-dark-green animated tada" id="a">' + constructedAs[0].a + '</li><li class="btn btn-brown animated flash" id="b">' + constructedAs[0].b + '</li><li class="btn btn-cyan animated jello" id="c">' + constructedAs[0].c + '</li><li class="btn btn-yellow animated wobble" id="c">' + constructedAs[0].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[0];
@@ -590,7 +593,7 @@ showQuestion = () => {
         case 2:
             $('#current-question').empty().html(question2);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[1].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[1].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[1].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[1].d +
+                '<ul><li class="btn btn-dark-green animated slideInDown" id="a">' + constructedAs[1].a + '</li><li class="btn btn-brown animated slideInDown" id="b">' + constructedAs[1].b + '</li><li class="btn btn-cyan animated slideInRight" id="c">' + constructedAs[1].c + '</li><li class="btn btn-yellow animated slideInLeft" id="d">' + constructedAs[1].d +
                 '</ul>'
             )
             currentCorrectAnswer = correctArray[1];
@@ -599,7 +602,7 @@ showQuestion = () => {
         case 3:
             $('#current-question').empty().html(question3);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[2].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[2].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[2].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[2].d +
+                '<ul><li class="btn btn-dark-green animated rubberBand" id="a">' + constructedAs[2].a + '</li><li class="btn btn-brown animated shake" id="b">' + constructedAs[2].b + '</li><li class="btn btn-cyan animated headShake" id="c">' + constructedAs[2].c + '</li><li class="btn btn-yellow animated bounceIn" id="d">' + constructedAs[2].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[2];
@@ -608,7 +611,7 @@ showQuestion = () => {
         case 4:
             $('#current-question').empty().html(question4);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[3].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[3].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[3].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[3].d +
+                '<ul><li class="btn btn-dark-green animated bounceInDown" id="a">' + constructedAs[3].a + '</li><li class="btn btn-brown animated bounceInUp" id="b">' + constructedAs[3].b + '</li><li class="btn btn-cyan animated bounceInRight" id="c">' + constructedAs[3].c + '</li><li class="btn btn-yellow animated bounceInLeft" id="d">' + constructedAs[3].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[3];
@@ -617,7 +620,7 @@ showQuestion = () => {
         case 5:
             $('#current-question').empty().html(question5);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[4].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[4].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[4].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[4].d +
+                '<ul><li class="btn btn-dark-green animated fadeIn" id="a">' + constructedAs[4].a + '</li><li class="btn btn-brown animated fadeInDownBig" id="b">' + constructedAs[4].b + '</li><li class="btn btn-cyan animated fadeInUpBig" id="c">' + constructedAs[4].c + '</li><li class="btn btn-yellow animated flipInX" id="d">' + constructedAs[4].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[4];
@@ -626,7 +629,7 @@ showQuestion = () => {
         case 6:
             $('#current-question').empty().html(question6);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[5].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[5].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[5].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[5].d +
+                '<ul><li class="btn btn-dark-green animated flipInY" id="a">' + constructedAs[5].a + '</li><li class="btn btn-brown animated lightSpeedIn" id="b">' + constructedAs[5].b + '</li><li class="btn btn-cyan animated fadeIn" id="c">' + constructedAs[5].c + '</li><li class="btn btn-yellow animated rotateIn" id="d">' + constructedAs[5].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[5];
@@ -635,7 +638,7 @@ showQuestion = () => {
         case 7:
             $('#current-question').empty().html(question7);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[6].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[6].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[6].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[6].d +
+                '<ul><li class="btn btn-dark-green animated rotateInDownLeft" id="a">' + constructedAs[6].a + '</li><li class="btn btn-brown animated rotateInDownRight" id="b">' + constructedAs[6].b + '</li><li class="btn btn-cyan animated rotateInUpLeft" id="c">' + constructedAs[6].c + '</li><li class="btn btn-yellow animated rotateInUpRight" id="d">' + constructedAs[6].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[6];
@@ -644,7 +647,7 @@ showQuestion = () => {
         case 8:
             $('#current-question').empty().html(question8);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[7].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[7].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[7].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[7].d +
+                '<ul><li class="btn btn-dark-green animated rollIn" id="a">' + constructedAs[7].a + '</li><li class="btn btn-brown animated zoomIn" id="b">' + constructedAs[7].b + '</li><li class="btn btn-cyan animated zoomInDown" id="c">' + constructedAs[7].c + '</li><li class="btn btn-yellow animated zoomInRight" id="d">' + constructedAs[7].d +
                 '</ul>'
             );
             currentQuestionNumber++;
@@ -652,7 +655,7 @@ showQuestion = () => {
         case 9:
             $('#current-question').empty().html(question9);
             $('#choices').html(
-                '<ul><li class="btn btn-dark-green" id="a">' + constructedAs[8].a + '</li><li class="btn btn-brown" id="b">' + constructedAs[8].b + '</li><li class="btn btn-cyan" id="c">' + constructedAs[8].c + '</li><li class="btn btn-yellow" id="d">' + constructedAs[8].d +
+                '<ul><li class="btn btn-dark-green animated rollIn" id="a">' + constructedAs[8].a + '</li><li class="btn btn-brown animated zoomInLeft" id="b">' + constructedAs[8].b + '</li><li class="btn btn-cyan animated tada" id="c">' + constructedAs[8].c + '</li><li class="btn btn-yellow animated flipInX" id="d">' + constructedAs[8].d +
                 '</ul>'
             );
             currentCorrectAnswer = correctArray[8];
@@ -661,7 +664,7 @@ showQuestion = () => {
         case 10:
             $('#current-question').empty().html(question10);
             $('#choices').html(
-                '<ul><li><button type="button" class="btn btn-dark-green" id="a">' + constructedAs[9].a + '</button></li><li><button class="btn btn-brown" id="b">' + constructedAs[9].b + '</button></li><li><button class="btn btn-cyan" id="c">' + constructedAs[9].c + '</button></li><li> <button class="btn btn-yellow" id="d">' + constructedAs[9].d +
+                '<ul><li><button type="button" class="btn btn-dark-green animated rotateIn" id="a">' + constructedAs[9].a + '</button></li><li><button class="btn btn-brown animated slideIn" id="b">' + constructedAs[9].b + '</button></li><li><button class="btn btn-cyan animated jello" id="c">' + constructedAs[9].c + '</button></li><li> <button class="btn btn-yellow animated wobble" id="d">' + constructedAs[9].d +
                 '</button></li></ul>'
             );
             currentCorrectAnswer = correctArray[9];
@@ -722,6 +725,7 @@ compareAnswers = (playerChoice) => {
 clearDivs = () => {
     timerDiv.empty();
     currentQuestionDiv.empty();
+    choicesDiv.empty();
     choicesDiv.html('<ul></ul>');
     playGame();
 
@@ -734,8 +738,22 @@ playGame = () => {
         resetTimer();
         startTimer();
     } else {
-        TODO: "End of game, show stats"
-        alert("TIME UP!");
+        $('#current-question').empty().html(
+            '<h1>End</h1><br><h3>Your scores:</h3><br>Correct: ' + correct +
+            'Incorrect: ' + incorrect +
+            'Unanswered: ' + unanswered
+        );
+
+        $('#choices').html(
+            '<button id="restart" class="btn btn-elegant">Click to Restart</button>'
+        );
+
+        $('#restart').click(function () {
+            resetGame();
+            gameDiv.fadeOut();
+            startButton.show();
+            startGame();
+        });
     }
 };
 
