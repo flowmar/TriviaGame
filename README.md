@@ -42,7 +42,7 @@ For this project we created a trivia game that utilizes Javascript timers.
 The project was deployed to GitHub pages as:
 [trivia-game](https://flowmar.github.io/trivia-game)
 
-The source code is located [here](https://github.com/flowmar/trivia-games).
+The source code is located [here](https://github.com/flowmar/trivia-game).
 
 ---
 

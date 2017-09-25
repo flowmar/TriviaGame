@@ -1,4 +1,7 @@
 // Initialize variables
+
+/*Trivia Bank */
+
 const questions = {
     donkeyKong: [{
             question: "What was the name of the final boss in Donkey Kong Country?",
@@ -111,7 +114,7 @@ const questions = {
                 a: "Stars",
                 b: "Feathers",
                 c: "Mushrooms",
-                e: "Apples"
+                d: "Apples"
             },
             correctAnswer: "b"
         }, {
@@ -120,7 +123,7 @@ const questions = {
                 a: "Gruntilda, an angry witch",
                 b: "King K. Rool, the king of the lizards",
                 c: "Bowser, a turtle",
-                e: "Ash Ketchum, a terrifying ghost"
+                d: "Ash Ketchum, a terrifying ghost"
             },
             correctAnswer: "c"
         }, {
@@ -129,7 +132,7 @@ const questions = {
                 a: "Princess Zelda",
                 b: "Princess Daisy",
                 c: "Princess Peach",
-                e: "Princess Gannondorf"
+                d: "Princess Gannondorf"
             },
             correctAnswer: "c"
         }, {
@@ -138,7 +141,7 @@ const questions = {
                 a: "Maria",
                 b: "Gannondorf",
                 c: "Toad",
-                e: "Luigi"
+                d: "Luigi"
             },
             correctAnswer: "d"
         }, {
@@ -147,7 +150,7 @@ const questions = {
                 a: "Boo, only attacked you when you were facing away",
                 b: "Yelp, threw fireballs at you",
                 c: "Scream, spit icicles at you",
-                e: "Biggie, tried to eat you"
+                d: "Biggie, tried to eat you"
             },
             correctAnswer: "a"
         }, {
@@ -156,7 +159,7 @@ const questions = {
                 a: "The Sunshine Kingdom",
                 b: "Earth",
                 c: "The Mushroom Kingdom",
-                e: "The Star Kingdom"
+                d: "The Star Kingdom"
             },
             correctAnswer: "c"
         }, {
@@ -165,7 +168,7 @@ const questions = {
                 a: "Banjo the Bear",
                 b: "Yoshi the Dinosaur",
                 c: "Bowser the Turtle",
-                e: "Rambi the Rhino"
+                d: "Rambi the Rhino"
             },
             correctAnswer: "b"
         }, {
@@ -174,7 +177,7 @@ const questions = {
                 a: "A water-spraying backpack",
                 b: "A sword",
                 c: "Fireballs",
-                e: "Turtle Shells"
+                d: "Turtle Shells"
             },
             correctAnswer: "a"
         }, {
@@ -183,7 +186,7 @@ const questions = {
                 a: "Red Egg",
                 b: "Red Mushroom",
                 c: "Fire Flower",
-                e: "Hammer"
+                d: "Hammer"
             },
             correctAnswer: "c"
         }
@@ -369,49 +372,61 @@ const questions = {
             e: ""
         },
         correctAnswer: ""
-    }],
+    }]
 }
 
+// Variables
 const welcomeDiv = $('#welcome');
 const gameDiv = $('#game');
 const quizThemeDiv = $('#quiz-theme');
 const startButton = $('#start');
-let theme;
 const timerDiv = $('#timer');
 const choicesDiv = $('#choices');
 const currentQuestionDiv = $('#current-question');
-var converted;
-var timer = {
-    time: 30,
-    reset: function () {
-        timer.time = 30;
-    },
-    start: function () {
-        counter = setInterval(timer.count(), 1000);
-    },
-    stop: function () {
-        counter.clearInterval();
-    },
-    count: function () {
-        timer.time--;
-    }
-}
+var theme;
+var counter;
+var updater;
+var time = 10;
 var correct = 0;
 var incorrect = 0;
 var unanswered = 0;
-const constructed = [];
+const constructedQs = [];
+const constructedAs = [];
+const correctArray = [];
+var currentQuestion;
+var currentQuestionNumber = 1;
+var playerchoice = '';
+var currentCorrectAnswer = '';
 
 // Functions
 
+resetTimer = () => {
+    time = 30;
+}
+startTimer = () => {
+    updater = setInterval(updateTimer, 1000);
+    counter = setInterval(count, 1000);
+}
+stopTimer = () => {
+    clearInterval(counter);
+    clearInterval(updateTimer);
+}
+count = () => {
+    time--;
+    if (time > 0) {
+        updateTimer();
+    } else {
+        stopTimer();
+        updateTimer();
+    }
+}
+updateTimer = () => {
+    console.log(time);
+    timerDiv.empty().html("Time remaining:<br>" + time);
+}
+
 startGame = () => {
-    // $(startButton).on('click', function () {
-    //     startButton.hide(1500);
-    //     window.setTimeout(function () {
-    //         gameDiv.slideDown(2500);
-    //     }, 2000);
-    //     window.setTimeout(function () {
-    //         quizThemeDiv.slideDown(2500);
-    //     }, 4000)
+    // Click the start button to begin game
     $(startButton).on('click', function () {
         startButton.hide(500);
         window.setTimeout(function () {
@@ -419,38 +434,55 @@ startGame = () => {
         }, 500);
         window.setTimeout(function () {
             quizThemeDiv.slideDown(1500);
-        }, 2000)
-    });
-    $('#dk').on('click', function () {
-        build("dk");
-        quizThemeDiv.slideUp(2000);
-        window.setTimeout(function () {
-            currentQuestionDiv.show(3000);
-            choicesDiv.show(3000);
-            timerDiv.show(3000);
-        }, 2500);
+        }, 500)
     });
 
+    // Choose a video game for the questions
+    /*Donkey Kong*/
+    $('#dk').on('click', function () {
+        build("dk");
+        quizThemeDiv.slideUp(1000);
+        window.setTimeout(function () {
+            currentQuestionDiv.show(1500);
+            choicesDiv.show(1500);
+            timerDiv.show(1500);
+        }, 1000);
+        gameDiv.css({
+            backgroundColor: "goldenrod"
+        });
+        playGame();
+    });
+
+    /* Super Mario */
     $('#mario').on('click', function () {
         build("mario");
-        quizThemeDiv.slideUp(3000);
+        quizThemeDiv.slideUp(1000);
         window.setTimeout(function () {
-            currentQuestionDiv.show(4000);
-            choicesDiv.show(4000);
-            timerDiv.show(4000);
-        }, 3000);
+            currentQuestionDiv.show(1500);
+            choicesDiv.show(1500);
+            timerDiv.show(1500);
+        }, 1000);
+        gameDiv.css({
+            backgroundColor: "red"
+        });
+        playGame();
     });
 }
 
+// Reset game scores
 resetGame = () => {
     correct = 0;
     incorrect = 0;
     unanswered = 0;
 }
 
+// Build an array with the chosen question theme
 build = (theme) => {
 
     if (theme === "dk") {
+
+        // Build questions array
+
         question1 = questions.donkeyKong[0].question;
         question2 = questions.donkeyKong[1].question;
         question3 = questions.donkeyKong[2].question;
@@ -462,14 +494,43 @@ build = (theme) => {
         question9 = questions.donkeyKong[8].question;
         question10 = questions.donkeyKong[9].question;
 
-        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
+        constructedQs.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 
-        console.log(constructed);
+        console.log(constructedQs);
 
-        cycleQuestions();
+        // Build answer choices array
+        answers1 = questions.donkeyKong[0].answers;
+        answers2 = questions.donkeyKong[1].answers;
+        answers3 = questions.donkeyKong[2].answers;
+        answers4 = questions.donkeyKong[3].answers;
+        answers5 = questions.donkeyKong[4].answers;
+        answers6 = questions.donkeyKong[5].answers;
+        answers7 = questions.donkeyKong[6].answers;
+        answers8 = questions.donkeyKong[7].answers;
+        answers9 = questions.donkeyKong[8].answers;
+        answers10 = questions.donkeyKong[9].answers;
+
+        constructedAs.push(answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10);
+        console.log(constructedAs);
+
+        // Build correct answer array
+        correctAnswer1 = questions.donkeyKong[0].correctAnswer;
+        correctAnswer2 = questions.donkeyKong[1].correctAnswer;
+        correctAnswer3 = questions.donkeyKong[2].correctAnswer;
+        correctAnswer4 = questions.donkeyKong[3].correctAnswer;
+        correctAnswer5 = questions.donkeyKong[4].correctAnswer;
+        correctAnswer6 = questions.donkeyKong[5].correctAnswer;
+        correctAnswer7 = questions.donkeyKong[6].correctAnswer;
+        correctAnswer8 = questions.donkeyKong[7].correctAnswer;
+        correctAnswer9 = questions.donkeyKong[8].correctAnswer;
+        correctAnswer10 = questions.donkeyKong[9].correctAnswer;
+
+        correctArray.push(correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5, correctAnswer6, correctAnswer7, correctAnswer8, correctAnswer9, correctAnswer10);
+        console.log(correctArray);
 
     } else if (theme === "mario") {
 
+        // Build Mario theme questions and answers arrays
         question1 = questions.mario[0].question;
         question2 = questions.mario[1].question;
         question3 = questions.mario[2].question;
@@ -481,20 +542,222 @@ build = (theme) => {
         question9 = questions.mario[8].question;
         question10 = questions.mario[9].question;
 
-        constructed.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10)
+        constructedQs.push(question1, question2, question3, question4, question5, question6, question7, question8, question9, question10);
 
-            .done(cycleQuestions());
+        answers1 = questions.mario[0].answers;
+        answers2 = questions.mario[1].answers;
+        answers3 = questions.mario[2].answers;
+        answers4 = questions.mario[3].answers;
+        answers5 = questions.mario[4].answers;
+        answers6 = questions.mario[5].answers;
+        answers7 = questions.mario[6].answers;
+        answers8 = questions.mario[7].answers;
+        answers9 = questions.mario[8].answers;
+        answers10 = questions.mario[9].answers;
+
+        constructedAs.push(answers1, answers2, answers3, answers4, answers5, answers6, answers7, answers8, answers9, answers10);
+        console.log(constructedAs);
+
+        correctAnswer1 = questions.mario[0].correctAnswer;
+        correctAnswer2 = questions.mario[1].correctAnswer;
+        correctAnswer3 = questions.mario[2].correctAnswer;
+        correctAnswer4 = questions.mario[3].correctAnswer;
+        correctAnswer5 = questions.mario[4].correctAnswer;
+        correctAnswer6 = questions.mario[5].correctAnswer;
+        correctAnswer7 = questions.mario[6].correctAnswer;
+        correctAnswer8 = questions.mario[7].correctAnswer;
+        correctAnswer9 = questions.mario[8].correctAnswer;
+        correctAnswer10 = questions.mario[9].correctAnswer;
+
+        console.log(correctAnswer1);
+
+        correctArray.push(correctAnswer1, correctAnswer2, correctAnswer3, correctAnswer4, correctAnswer5, correctAnswer6, correctAnswer7, correctAnswer8, correctAnswer9, correctAnswer10);
+        console.log(correctArray);
     }
 
 }
 
-cycleQuestions = () => {
-    window.setInterval(function () {
-        timer.start();
-        timerDiv.empty().html("Time remaining:<br>" + timer.time);
+// Based on the currentQuestionNumber, display the corresponding question and answer choices from their respective arrays
+showQuestion = () => {
+    switch (currentQuestionNumber) {
+        case 1:
+            $('#current-question').empty().html(question1);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated tada" id="a">' + constructedAs[0].a + '</li><li class="btn btn-brown animated flash btn-lg" id="b">' + constructedAs[0].b + '</li><li class="btn btn-lg btn-cyan animated jello" id="c">' + constructedAs[0].c + '</li><li class="btn btn-yellow btn-lg animated wobble" id="c">' + constructedAs[0].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[0];
+            currentQuestionNumber++;
+            console.log(currentQuestionNumber);
+            break;
+        case 2:
+            $('#current-question').empty().html(question2);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated slideInDown" id="a">' + constructedAs[1].a + '</li><li class="btn btn-brown btn-lg animated slideInDown" id="b">' + constructedAs[1].b + '</li><li class="btn btn-cyan btn-lg animated slideInRight" id="c">' + constructedAs[1].c + '</li><li class="btn btn-yellow btn-lg animated slideInLeft" id="d">' + constructedAs[1].d +
+                '</li></ul>'
+            )
+            currentCorrectAnswer = correctArray[1];
+            currentQuestionNumber++;
+            break;
+        case 3:
+            $('#current-question').empty().html(question3);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated rubberBand" id="a">' + constructedAs[2].a + '</li><li class="btn btn-brown btn-lg animated shake" id="b">' + constructedAs[2].b + '</li><li class="btn btn-cyan btn-lg animated headShake" id="c">' + constructedAs[2].c + '</li><li class="btn btn-yellow btn-lg animated bounceIn" id="d">' + constructedAs[2].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[2];
+            currentQuestionNumber++;
+            break;
+        case 4:
+            $('#current-question').empty().html(question4);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated bounceInDown" id="a">' + constructedAs[3].a + '</li><li class="btn btn-brown btn-lg animated bounceInUp" id="b">' + constructedAs[3].b + '</li><li class="btn btn-cyan btn-lg animated bounceInRight" id="c">' + constructedAs[3].c + '</li><li class="btn btn-yellow btn-lg animated bounceInLeft" id="d">' + constructedAs[3].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[3];
+            currentQuestionNumber++;
+            break;
+        case 5:
+            $('#current-question').empty().html(question5);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated fadeIn" id="a">' + constructedAs[4].a + '</li><li class="btn btn-brown btn-lg animated fadeInDownBig" id="b">' + constructedAs[4].b + '</li><li class="btn btn-cyan btn-lg animated fadeInUpBig" id="c">' + constructedAs[4].c + '</li><li class="btn btn-yellow btn-lg animated flipInX" id="d">' + constructedAs[4].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[4];
+            currentQuestionNumber++;
+            break;
+        case 6:
+            $('#current-question').empty().html(question6);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated flipInY" id="a">' + constructedAs[5].a + '</li><li class="btn btn-brown btn-lg animated lightSpeedIn" id="b">' + constructedAs[5].b + '</li><li class="btn btn-cyan btn-lg animated fadeIn" id="c">' + constructedAs[5].c + '</li><li class="btn btn-yellow btn-lg animated rotateIn" id="d">' + constructedAs[5].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[5];
+            currentQuestionNumber++;
+            break;
+        case 7:
+            $('#current-question').empty().html(question7);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated rotateInDownLeft" id="a">' + constructedAs[6].a + '</li><li class="btn btn-brown btn-lg animated rotateInDownRight" id="b">' + constructedAs[6].b + '</li><li class="btn btn-cyan btn-lg animated rotateInUpLeft" id="c">' + constructedAs[6].c + '</li><li class="btn btn-lg btn-yellow animated rotateInUpRight" id="d">' + constructedAs[6].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[6];
+            currentQuestionNumber++;
+            break;
+        case 8:
+            $('#current-question').empty().html(question8);
+            $('#choices').html(
+                '<ul><li class="btn btn-lg btn-dark-green animated rollIn" id="a">' + constructedAs[7].a + '</li><li class="btn btn-brown btn-lg animated zoomIn" id="b">' + constructedAs[7].b + '</li><li class="btn btn-lg btn-cyan animated zoomInDown" id="c">' + constructedAs[7].c + '</li><li class="btn btn-yellow btn-lg animated zoomInRight" id="d">' + constructedAs[7].d +
+                '</li></ul>'
+            );
+            currentQuestionNumber++;
+            break;
+        case 9:
+            $('#current-question').empty().html(question9);
+            $('#choices').html(
+                '<ul><li class="btn btn-dark-green btn-lg animated rollIn" id="a">' + constructedAs[8].a + '</li><li class="btn btn-brown btn-lg animated zoomInLeft" id="b">' + constructedAs[8].b + '</li><li class="btn btn-cyan btn-lg animated tada" id="c">' + constructedAs[8].c + '</li><li class="btn btn-lg btn-yellow animated flipInX" id="d">' + constructedAs[8].d +
+                '</li></ul>'
+            );
+            currentCorrectAnswer = correctArray[8];
+            currentQuestionNumber++;
+            break;
+        case 10:
+            $('#current-question').empty().html(question10);
+            $('#choices').html(
+                '<ul><li><button class="btn btn-lg btn-dark-green animated rotateIn" id="a" type="button">' + constructedAs[9].a + '</button></li><li><button class="btn btn-brown btn-lg animated slideIn" id="b">' + constructedAs[9].b + '</button></li><li><button class="btn btn-cyan btn-lg animated jello" id="c">' + constructedAs[9].c + '</button></li><li> <button class="btn btn-yellow btn-lg animated wobble" id="d">' + constructedAs[9].d +
+                '</button></li></ul>'
+            );
+            currentCorrectAnswer = correctArray[9];
+            currentQuestionNumber++;
+            break;
+    }
+
+    // When an answer is clicked, disable the other buttons and run compareAnswers()
+    $('#a, #b, #c, #d').click(function () {
+        if (this.id == 'a') {
+            stopTimer();
+            $('#b', '#c', '#d').addClass('disabled');
+            playerChoice = 'a';
+            compareAnswers(playerChoice);
+        } else if (this.id == 'b') {
+            stopTimer();
+            $('#a', '#c', '#d').addClass('disabled');
+            playerChoice = 'b';
+            console.log(playerChoice);
+            compareAnswers(playerChoice);
+        } else if (this.id == 'c') {
+            stopTimer();
+            $('#a', '#b', '#d').addClass('disabled');
+            playerChoice = 'c';
+            console.log(playerChoice);
+            compareAnswers(playerChoice);
+        } else if (this.id == 'd') {
+            stopTimer();
+            $('#a', '#b', '#c').addClass('disabled');
+            playerChoice = 'd';
+            console.log(playerChoice);
+            compareAnswers(playerChoice);
+
+        }
     });
+};
+
+// Check if the playerChoice was correct
+compareAnswers = (playerChoice) => {
+
+    console.log("Comparing player choice");
+    // If correct, add a point to 'correct' and alert
+    if (playerChoice == currentCorrectAnswer) {
+        correct++;
+        alert("YAHOOO!!");
+    }
+    // Otherwise add a point to 'incorrect' and alert
+    else {
+        incorrect++;
+        alert("NOOPE!");
+    }
+
+    // Clear out divs to make room for the next question
+    clearDivs();
 }
 
+// Clears out all divs and starts the next question
+clearDivs = () => {
+    timerDiv.empty();
+    currentQuestionDiv.empty();
+    choicesDiv.empty();
+    choicesDiv.html('<ul></ul>');
+    playGame();
+
+}
+
+// Check the currentQuestionNumber and run showQuestion; reset the timer
+playGame = () => {
+    if (currentQuestionNumber < 10) {
+        showQuestion(currentQuestionNumber);
+        resetTimer();
+        startTimer();
+    } else {
+        $('#current-question').empty().html(
+            '<span class="p-2 display-1">End</span><br><h3 class="display-3">Your scores:</h3><br>Correct: ' + correct +
+            '<br>Incorrect: ' + incorrect +
+            '<br>Unanswered: ' + unanswered
+        );
+
+        $('#choices').html(
+            '<button class="btn btn-elegant btn-lg" id="restart">Click to Restart</button>'
+        );
+
+        $('#restart').click(function () {
+            resetGame();
+            gameDiv.fadeOut();
+            startButton.show();
+            startGame();
+        });
+    }
+};
+
+// When the document is ready, populate the start button
 $(document).ready(function () {
     startGame();
 });
